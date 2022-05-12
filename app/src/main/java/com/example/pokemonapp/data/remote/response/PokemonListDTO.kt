@@ -6,9 +6,10 @@ data class PokemonListDTO(
     val next: Any?,
     val previous: Any?,
     val results: List<Result>
-)
+) {
+    data class Result(
+        val name: String,
+        val url: String
+    )
+}
 
-data class Result(
-    val name: String,
-    val url: String
-)

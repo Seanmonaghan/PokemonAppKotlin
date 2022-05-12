@@ -11,12 +11,12 @@ val remoteModule = module {
 
 const val BASE_URL = "https://pokeapi.co/api/v2"
 
-fun providesRetrofit() {
+fun providesRetrofit(): PokemonService {
 
     val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    retrofit.create(PokemonService::class.java)
+    return retrofit.create(PokemonService::class.java)
 }
