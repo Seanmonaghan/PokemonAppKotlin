@@ -7,10 +7,10 @@ import retrofit2.http.Path
 
 interface PokemonService {
 
-    @GET("/pokemon?limit=10000&offset=0")
+    @GET("pokemon?limit=10000&offset=0")
     suspend fun getAllPokemon(): PokemonListDTO
 
-    @GET("/pokemon/{name}")
+    @GET("pokemon/{name}")
     suspend fun getPokemon(@Path("name") name: String): PokemonDTO
 
 
