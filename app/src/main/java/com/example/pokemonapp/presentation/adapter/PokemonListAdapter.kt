@@ -3,13 +3,16 @@ package com.example.pokemonapp.presentation.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonapp.data.local.entity.PokemonList
 import com.example.pokemonapp.databinding.ItemPokemonListBinding
 import com.example.pokemonapp.presentation.fragment.PokemonListFragmentDirections
 
-class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.PokemonListAdapterViewHolder>() {
+class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.PokemonListAdapterViewHolder>(),
+    Filterable {
 
     private var pokemon = listOf<PokemonList>()
 
@@ -49,6 +52,10 @@ class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.PokemonListAd
                 LayoutInflater.from(parent.context), parent, false
             ).let { PokemonListAdapterViewHolder(it) }
         }
+    }
+
+    override fun getFilter(): Filter {
+        TODO("Figure this out.")
     }
 
 }

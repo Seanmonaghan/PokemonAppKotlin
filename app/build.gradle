@@ -76,4 +76,7 @@ dependencies {
     implementation "io.insert-koin:koin-core:$koin_version"
     // Koin main features for Android
     implementation "io.insert-koin:koin-android:$koin_version"
+
+//    TextWatcher
+    implementation "androidx.core:core-ktx:1.7.0"
 }
