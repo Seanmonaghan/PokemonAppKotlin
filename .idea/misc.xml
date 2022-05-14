@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/font/Bangers.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/font/bangers.xml" value="0.18256410256410258" />
+        <entry key="app/src/main/res/font/pixel.xml" value="0.18796296296296297" />
+        <entry key="app/src/main/res/layout-v26/item_pokemon_list.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/fragment_pokemon.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/fragment_pokemon_list.xml" value="0.1125" />
         <entry key="app/src/main/res/layout/item_pokemon_list.xml" value="0.11145833333333334" />
       </map>

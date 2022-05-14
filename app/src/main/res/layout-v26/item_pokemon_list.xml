@@ -7,14 +7,15 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_name"
         android:textColor="#363b81"
+        android:fontFamily="@font/bangers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/pokemon_name"
         android:gravity="center"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
         android:padding="10dp"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
         />
 
 
