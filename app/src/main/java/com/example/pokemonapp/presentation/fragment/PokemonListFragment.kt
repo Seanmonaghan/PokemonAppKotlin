@@ -31,42 +31,36 @@ class PokemonListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-        fun generateList() {
-            with(binding.rvPokemonList) {
-                layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
-                adapter = pokemonListAdapter.apply {
-                    pokemonViewModel.browsePokemonList()
-                    pokemonViewModel.pokemonListData.observe(viewLifecycleOwner) {
-                        addItem(it)
-                        if (binding.svSearchPokemon.query != "") {
-                            val filteredList = it.filter {
-                                it.name.contains(
-                                    binding.svSearchPokemon.query.toString(),
-                                    ignoreCase = true
-                                )
-                            }
-                            addItem(filteredList)
-                        }
-                    }
+//        Set up Recycler View
+        with(binding.rvPokemonList) {
+            layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
+            adapter = pokemonListAdapter.apply {
+                pokemonViewModel.browsePokemonList()
+                pokemonViewModel.pokemonListData.observe(viewLifecycleOwner) {
+                    addItem(it)
                 }
             }
         }
 
-        generateList()
-
+//        Search Query On Text Change Listener
         binding.svSearchPokemon.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                generateList()
-                return false
+                pokemonViewModel.filterPokemon(query!!)
+                binding.rvPokemonList.adapter = pokemonListAdapter.apply {
+                    pokemonViewModel.filterInVM(binding.svSearchPokemon.query.toString())
+                    pokemonViewModel.pokemonListData.observe(viewLifecycleOwner) {
+                        addItem(it)
+                    }
+                    return false
+                }
             }
         })
-
     }
 }
+
+
 

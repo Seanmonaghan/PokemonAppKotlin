@@ -3,13 +3,10 @@ package com.example.pokemonapp.data.repo
 import com.example.pokemonapp.data.local.database.PokemonDatabase
 import com.example.pokemonapp.data.local.entity.Pokemon
 import com.example.pokemonapp.data.local.entity.PokemonList
-import com.example.pokemonapp.data.remote.response.PokemonDTO
 import com.example.pokemonapp.data.remote.service.PokemonService
 import com.example.pokemonapp.di.providesRetrofit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.koin.core.module.dsl.singleOf
-import org.koin.dsl.module
 
 class PokemonRepo(
     private val service: PokemonService = providesRetrofit(),
@@ -25,6 +22,10 @@ class PokemonRepo(
             database.pokemonListDao().insertPokemon(pokemonList)
             return@ifEmpty pokemonList
         }
+    }
+
+    suspend fun getFilteredList(filter: String): List<PokemonList> = withContext(Dispatchers.IO) {
+        return@withContext database.pokemonListDao().filterPokemon(filter)
     }
 
     suspend fun getPokemon(pokemon: String): Result<Pokemon> = withContext(Dispatchers.IO) {

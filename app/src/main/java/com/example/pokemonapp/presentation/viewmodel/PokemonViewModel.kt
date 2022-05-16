@@ -19,7 +19,7 @@ class PokemonViewModel(
     val pokemonListData: LiveData<List<PokemonList>> get() = _pokemonListData
 
     private val _pokemonData = MutableLiveData<Pokemon>()
-    val pokemonData : LiveData<Pokemon> get() = _pokemonData
+    val pokemonData: LiveData<Pokemon> get() = _pokemonData
 
     fun browsePokemonList() {
         viewModelScope.launch {
@@ -27,9 +27,26 @@ class PokemonViewModel(
         }
     }
 
+    fun filterPokemon(filter: String) {
+        viewModelScope.launch {
+            _pokemonListData.value = repo.getFilteredList(filter)
+        }
+    }
+
     fun browsePokemon(pokemon: String) {
         viewModelScope.launch {
             _pokemonData.value = repo.getPokemon(pokemon).getOrNull()
+        }
+    }
+
+    fun filterInVM(filter: String) {
+        viewModelScope.launch {
+            _pokemonListData.value = repo.getPokemonList().filter {
+                it.name.contains(
+                    filter,
+                    ignoreCase = true
+                )
+            }
         }
     }
 }

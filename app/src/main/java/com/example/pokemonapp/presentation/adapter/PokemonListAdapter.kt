@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonapp.data.local.entity.PokemonList
 import com.example.pokemonapp.databinding.ItemPokemonListBinding
 import com.example.pokemonapp.presentation.fragment.PokemonListFragmentDirections
+import com.squareup.picasso.Picasso
 
-class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.PokemonListAdapterViewHolder>(),
-    Filterable {
+class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.PokemonListAdapterViewHolder>() {
 
     private var pokemon = listOf<PokemonList>()
 
@@ -40,8 +40,9 @@ class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.PokemonListAd
     class PokemonListAdapterViewHolder(private val binding: ItemPokemonListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bindData(pokemon: PokemonList) {
-            binding.tvName.text = pokemon.name.replace("-", " ")
+            binding.tvName.text = "#${pokemon.id.toString()} : ${pokemon.name.replace("-", " ")}"
             binding.root.setOnClickListener {
                 it.findNavController().navigate(PokemonListFragmentDirections.toDetails(pokemon.name.replaceFirstChar { char -> char.lowercase() }))
             }
@@ -53,9 +54,4 @@ class PokemonListAdapter : RecyclerView.Adapter<PokemonListAdapter.PokemonListAd
             ).let { PokemonListAdapterViewHolder(it) }
         }
     }
-
-    override fun getFilter(): Filter {
-        TODO("Figure this out.")
-    }
-
 }
